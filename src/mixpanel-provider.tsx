@@ -5,19 +5,16 @@ interface WithMixPanel {
   mixpanel: Mixpanel;
 }
 
-const MixPanelContext = createContext({} as WithMixPanel);
-const useMixPanel = () => useContext(MixPanelContext);
+export const MixPanelContext = createContext({} as WithMixPanel);
+export const useMixPanel = () => useContext(MixPanelContext);
 
-function withMixpanel<T>(Component: ComponentType<T>): FunctionComponent<T & WithMixPanel> {
+export function withMixpanel<T>(Component: ComponentType<T>): FunctionComponent<T & WithMixPanel> {
   return (props: T) => <Component {...props} mixpanel={mixpanel} />;
 }
 
-const MixPanelProvider = ({ children, token = '' }: { children: ReactNode; token?: string }) => {
+export const MixPanelProvider = ({ children, token = '' }: { children: ReactNode; token?: string }) => {
   if (!!token) {
     mixpanel.init(token);
   }
   return <MixPanelContext.Provider value={{ mixpanel }}>{children}</MixPanelContext.Provider>;
 };
-
-export { useMixPanel, withMixpanel, MixPanelContext };
-export default MixPanelProvider;

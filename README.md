@@ -7,9 +7,9 @@ The utility provides simple wrapper over The project provides simple wrapper ove
 # install
 
 ```bash
-  npm install --save rmixpanel-utility
+  npm install mixpanel-utility
 ```
-	
+
 ## Usage
 
 Then use it like you would use [Context API](https://reactjs.org/docs/context.html). In your root `App.js` :
@@ -17,11 +17,11 @@ Then use it like you would use [Context API](https://reactjs.org/docs/context.ht
 Render your app using `MixpanelProvider`
 
 ```jsx
-import MixPanelProvider from 'react-mixpanel-provider-component';
+import mixPanelUtility from 'mixpanel-utility';
 ReactDOM.render(
-  <MixPanelProvider token="xxxxxxxxxxxxxxxxx">
+  <mixPanelUtility.MixPanelProvider token="xxxxxxxxxxxxxxxxx">
     <App />
-  </MixPanelProvider>,
+  </mixPanelUtility.MixPanelProvider>,
   document.getElementById('root')
 );
 ```
@@ -32,9 +32,9 @@ ReactDOM.render(
 
 ```jsx
 import React, { useEffect } from 'react';
-import { useMixPanel } from 'react-mixpanel-provider-component';
+import mixPanelUtility from 'mixpanel-utility';
 const App = () => {
-  const { mixpanel } = useMixPanel();
+  const { mixpanel } = umixPanelUtility.seMixPanel();
   useEffect(() => {
     mixpanel.init('TOKEN');
     mixpanel.track('logged to site');
@@ -47,7 +47,7 @@ const App = () => {
 
 ```jsx
 import React, { useEffect } from 'react';
-import { withMixpanel } from 'react-mixpanel-provider-component';
+import mixPanelUtility from 'mixpanel-utility';
 class App extends React.Component {
   componentDidMount() {
     this.props.mixpanel.init('TOKEN');
@@ -57,29 +57,29 @@ class App extends React.Component {
     return <div>Hello world!</div>;
   }
 }
-export default withMixpanel(App);
+export default mixPanelUtility.withMixpanel(App);
 ```
 
 `Other`
 
 ```js
-import Mixpanel from 'react-mixpanel-provider-component';
+import mixPanelUtility from 'mixpanel-utility';
 let isInit = false;
 export default mixPanelHandler = (type, payload) => {
   if (!isInit) {
-    Mixpanel.init('TOKEN');
+    mixPanelUtility.actions.init('TOKEN');
     isInit = true;
   }
   if (type === 'NEW_USER') {
-    Mixpanel.identify(payload.id);
-    Mixpanel.people.set({
-      $name: payload.name,
+    Mixpanel.actions.identify(payload.id);
+    Mixpanel.actions.people.set({
+      $name: .payload.name,
       $email: payload.email,
       USER_ID: payload.id
     });
   } else if (type === 'END_SESSION') {
-    Mixpanel.track('Hello mixpanel!');
-    Mixpanel.people.set({
+    Mixpanel.actions.track('Hello mixpanel!');
+    Mixpanel.actions.people.set({
       last_seen: new Date()
     });
   }
