@@ -8,9 +8,12 @@ The utility provides simple wrapper over The project provides simple wrapper ove
 
 ```bash
   npm install mixpanel-utility
-  or
+```
+or
+```bash
   yarn add mixpanel-utility
 ```
+
 
 ## Usage
 
