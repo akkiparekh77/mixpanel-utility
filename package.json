@@ -10,7 +10,7 @@
     "url": "git+https://github.com/akkiparekh77/mixpanel-utility.git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry":"https://npm.pkg.github.com/@akkiparekh77"
   },
   "keywords": [
     "react",
