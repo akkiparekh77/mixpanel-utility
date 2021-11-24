@@ -23,11 +23,11 @@ Then use it like you would use [Context API](https://reactjs.org/docs/context.ht
 Render your app using `MixpanelProvider`
 
 ```jsx
-import mixPanelUtility from 'mixpanel-utility';
+import mpu from 'mixpanel-utility';
 ReactDOM.render(
-  <mixPanelUtility.MixPanelProvider token="xxxxxxxxxxxxxxxxx">
+  <mpu.MixPanelProvider token="xxxxxxxxxxxxxxxxx">
     <App />
-  </mixPanelUtility.MixPanelProvider>,
+  </mpu.MixPanelProvider>,
   document.getElementById('root')
 );
 ```
@@ -39,9 +39,9 @@ ReactDOM.render(
 
 ```jsx
 import React, { useEffect } from 'react';
-import mixPanelUtility from 'mixpanel-utility';
+import mpu from 'mixpanel-utility';
 const App = () => {
-  const { mixpanel } = mixPanelUtility.useMixPanel();
+  const { mixpanel } = mpu.useMixPanel();
   useEffect(() => {
     mixpanel.init('TOKEN');
     mixpanel.track('logged to site');
@@ -54,7 +54,7 @@ const App = () => {
 
 ```jsx
 import React, { useEffect } from 'react';
-import mixPanelUtility from 'mixpanel-utility';
+import mpu from 'mixpanel-utility';
 class App extends React.Component {
   componentDidMount() {
     this.props.mixpanel.init('TOKEN');
@@ -64,29 +64,29 @@ class App extends React.Component {
     return <div>Hello world!</div>;
   }
 }
-export default mixPanelUtility.withMixpanel(App);
+export default mpu.withMixpanel(App);
 ```
 
 `Other`
 
 ```js
-import mixPanelUtility from 'mixpanel-utility';
+import mpu from 'mixpanel-utility';
 let isInit = false;
 export default mixPanelHandler = (type, payload) => {
   if (!isInit) {
-    mixPanelUtility.actions.init('TOKEN');
+    mpu.actions.init('TOKEN');
     isInit = true;
   }
   if (type === 'NEW_USER') {
-    Mixpanel.actions.identify(payload.id);
-    Mixpanel.actions.people.set({
+    mpu.actions.identify(payload.id);
+    mpu.actions.people.set({
       $name: .payload.name,
       $email: payload.email,
       USER_ID: payload.id
     });
   } else if (type === 'END_SESSION') {
-    Mixpanel.actions.track('Hello mixpanel!');
-    Mixpanel.actions.people.set({
+    mpu.actions.track('Hello mixpanel!');
+    mpu.actions.people.set({
       last_seen: new Date()
     });
   }
@@ -98,7 +98,7 @@ export default mixPanelHandler = (type, payload) => {
 
 ```jsx
 import React, { Component } from 'react';
-import mixPanelUtility from 'mixpanel-utility';
+import mpu from 'mixpanel-utility';
 
 class Dashboard extends Component {
   render() {
@@ -115,5 +115,5 @@ class Dashboard extends Component {
     );
   }
 }
-export default mixPanelUtility.withMixpanel(Dashboard);
+export default mpu.withMixpanel(Dashboard);
 ```
