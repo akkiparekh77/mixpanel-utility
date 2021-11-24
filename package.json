@@ -34,7 +34,7 @@
     "tslint": "tslint -p tslint -p tsconfig.json",
     "codestyle": "npm run prettier && npm run tslint"
   },
-  "author": "akkiparekh77",
+  "author": "Ankit Parekh",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.12.13",
