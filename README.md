@@ -8,12 +8,15 @@ The utility provides simple wrapper over The project provides simple wrapper ove
 
 ```bash
   npm install mixpanel-utility
+  or
+  yarn add mixpanel-utility
 ```
 
 ## Usage
 
 Then use it like you would use [Context API](https://reactjs.org/docs/context.html). In your root `App.js` :
 
+### `MixpanelProvider` Component
 Render your app using `MixpanelProvider`
 
 ```jsx
@@ -26,6 +29,7 @@ ReactDOM.render(
 );
 ```
 
+### `useMixpanel` Hook
 `Don't forget to initialize your Mixpanel instance if you haven't passed the token to the provider`
 
 `Functional component`
@@ -34,7 +38,7 @@ ReactDOM.render(
 import React, { useEffect } from 'react';
 import mixPanelUtility from 'mixpanel-utility';
 const App = () => {
-  const { mixpanel } = umixPanelUtility.seMixPanel();
+  const { mixpanel } = mixPanelUtility.useMixPanel();
   useEffect(() => {
     mixpanel.init('TOKEN');
     mixpanel.track('logged to site');
@@ -84,4 +88,29 @@ export default mixPanelHandler = (type, payload) => {
     });
   }
 };
+```
+
+
+### `withMixpanel` High-Order Component
+
+```jsx
+import React, { Component } from 'react';
+import mixPanelUtility from 'mixpanel-utility';
+
+class Dashboard extends Component {
+  render() {
+    const { mixpanel } = this.props;
+    if (mixpanel.config.token) { // Check that a token was provided (useful if you have environments without Mixpanel)
+      mixpanel.track('My Event', {
+        my_custom_prop: 'foo',
+      });
+    }
+    return (
+      <>
+        ...
+      </>
+    );
+  }
+}
+export default mixPanelUtility.withMixpanel(Dashboard);
 ```
