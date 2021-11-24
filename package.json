@@ -1,5 +1,5 @@
 {
-  "name": "mixpanel-utility",
+  "name": "@akkiparekh77/mixpanel-utility",
   "version": "1.0.0",
   "description": "This is the mixpanel utility for the apps we designed in Talview",
   "source": "src/index.tsx",
